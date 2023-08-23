@@ -1,3 +1,9 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
 jobs:
 - job: BuildAndDeploy
   steps:
@@ -11,10 +17,9 @@ jobs:
       npm run build
     displayName: 'npm install and build'
 
-- job: DeployToStaging
-  dependsOn: BuildAndDeploy
-  steps:
   - script: |
       echo "Deploying to Staging..."
       # Add deployment steps for staging environment
     displayName: 'Deploy to Staging'
+
+  # Other jobs for additional environments can be added here and will run sequentially
